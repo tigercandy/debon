@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "Mantis <tangchunlinit@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "dist": "node_modules/.bin/webpack"
+  },
   "devDependencies": {
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
