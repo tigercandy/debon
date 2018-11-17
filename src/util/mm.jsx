@@ -6,7 +6,7 @@ class MUtil {
                 url: param.url || '',
                 dataType: param.dataType || 'json',
                 data: param.data || null,
-                success(res) {
+                success: res => {
                     if (0 === res.status) {
                         typeof resolve === 'function' && resolve(res.data, res.msg);
                     } else if (10 === res.status) {
@@ -14,7 +14,7 @@ class MUtil {
                     } else {
                         typeof reject === 'function' && reject(res.msg || res.data);
                     }
-                }, error(err) {
+                }, error: err => {
                     typeof reject === 'function' && reject(err.statusText);
                 }
             });
@@ -41,6 +41,44 @@ class MUtil {
 
     errorTips(msg) {
         alert(msg);
+    }
+
+    /**
+     * set local storage.
+     * @param key
+     * @param data
+     */
+    setStorage(key, data) {
+        let dataType = typeof data;
+        if (dataType === 'object') {
+            window.localStorage.setItem(key, JSON.stringify(data));
+        } else if (['number', 'string', 'boolean'].indexOf(dataType) >= 0) {
+            window.localStorage.setItem(key, data);
+        } else {
+            // do nothing
+        }
+    }
+
+    /**
+     * get local storage.
+     * @param key
+     * @returns {*}
+     */
+    getStorage(key) {
+        let data = window.localStorage.getItem(key);
+        if (data) {
+            return JSON.parse(data);
+        }
+
+        return '';
+    }
+
+    /**
+     * remove local storage.
+     * @param key
+     */
+    removeStorage(key) {
+        window.localStorage.removeItem(key);
     }
 }
 

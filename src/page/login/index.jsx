@@ -7,6 +7,8 @@ import './index.scss';
 const _user = new User();
 const _mm = new MUtil();
 
+const USER_INFO = 'userInfo';
+
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -43,6 +45,7 @@ class Login extends React.Component {
             validate = _user.validation(loginInfo);
         if (validate.status) {
             _user.login(loginInfo).then((res) => {
+                _mm.setStorage(USER_INFO, res);
                 this.props.history.push(this.state.redirect)
             }, (errMsg) => {
                 _mm.errorTips(errMsg);

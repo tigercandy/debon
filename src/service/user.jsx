@@ -1,5 +1,3 @@
-import React from 'react';
-
 import MUtil from 'util/mm.jsx';
 
 const _mm = new MUtil();
@@ -12,6 +10,13 @@ class User {
             dataType: 'json',
             data: data
         })
+    }
+
+    logout() {
+        return _mm.request({
+            type: 'POST',
+            url: '/user/logout.do',
+        });
     }
 
     validation(data) {
@@ -34,6 +39,16 @@ class User {
             status: true,
             msg: 'success'
         }
+    }
+
+    getUserList(pageNum) {
+        return _mm.request({
+            type: 'POST',
+            url: '/manage/user/list.do',
+            data: {
+                pageNum: pageNum
+            }
+        });
     }
 }
 
