@@ -587,6 +587,10 @@ ul.nav.nav-second-level.collapse.in {
     line-height: 1.428571429;
 }
 
+.no-boder {
+    border: 1px solid #f3f3f3;
+}
+
 /*----------------------------------------------
     MEDIA QUERIES
 ------------------------------------------------*/
