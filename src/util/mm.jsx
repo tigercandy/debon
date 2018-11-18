@@ -39,6 +39,10 @@ class MUtil {
         return result ? result[2] : null;
     }
 
+    successTips(msg) {
+        alert(msg || '成功');
+    }
+
     errorTips(msg) {
         alert(msg);
     }
