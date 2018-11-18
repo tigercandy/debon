@@ -11,7 +11,7 @@ class Pagination extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row pull-right">
                 <div className="col-md-12">
                     <RCPagination {...this.props} hideOnSinglePage showQuickJumper/>
                 </div>

@@ -30,6 +30,16 @@ class Product {
             data: data
         });
     }
+
+    getCategoryList(parentId) {
+        return _mm.request({
+            type: 'POST',
+            url: '/manage/category/get_category.do',
+            data: {
+                categoryId: parentId || 0,
+            }
+        });
+    }
 }
 
 export default Product;
