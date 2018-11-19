@@ -4,6 +4,7 @@ import PageHeader from 'component/page-header/index.jsx';
 import CategorySelector from 'page/product/index/category-selector.jsx';
 import FileUploader from "util/upload/index.jsx";
 import MUtil from 'util/mm.jsx';
+import Editor from "util/editor/index.jsx";
 
 import './index.scss';
 
@@ -39,6 +40,16 @@ class ProductSave extends React.Component {
         _mm.errorTips(err || '图片上传失败')
     }
 
+    // remove images
+    onImageRemove(e) {
+        let index = parseInt(e.target.getAttribute('index')),
+            subImages = this.state.subImages;
+        subImages.splice(index, 1);
+        this.setState({
+            subImages: subImages
+        })
+    }
+
     render() {
         return (
             <div id="page-wrapper">
@@ -64,19 +75,27 @@ class ProductSave extends React.Component {
                                     <span className="input-group-addon">件/个</span>
                                 </div>
                                 <div className="form-group input-group">
-                                    <span className="input-group-addon">商品描述 </span>
+                                    <span className="input-group-addon">商品简介 </span>
                                     <textarea className="form-control" rows="3"></textarea>
                                 </div>
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品图片</span>
                                     {
                                         this.state.subImages.length ? this.state.subImages.map(
-                                            (image, index) => (<div className="product-img" key={index}><img src={image.url}/></div>)
+                                            (image, index) => (
+                                                <div className="product-img" key={index}><img src={image.url}/>
+                                                    <i title="删除图片" className="fa fa-close" index={index}
+                                                       onClick={(e) => this.onImageRemove(e)}></i>
+                                                </div>)
                                         ) : (<input type="text" className="form-control" value="请上传图片" readOnly/>)
                                     }
                                 </div>
                                 <FileUploader onSuccess={(res) => this.onUploadSuccess(res)}
                                               onError={(err) => this.onUploadError(err)}/>
+                                <div className="form-group input-group">
+                                    <span className="input-group-addon">商品描述 </span>
+                                    <Editor/>
+                                </div>
                                 <button className="btn btn-success pull-right" onClick={(e) => {
                                     this.onSave(e)
                                 }}><i className="glyphicon glyphicon-ok"></i> 确认提交
