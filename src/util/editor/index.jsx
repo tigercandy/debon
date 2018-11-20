@@ -14,10 +14,22 @@ class Editor extends React.Component {
 
     loadEditor() {
         let element = this.refs['textarea'];
-        new Simditor({
+        this.simditor = new Simditor({
             textarea: $(element),
             defaultValue: this.props.placeholder || '请输入描述',
-        })
+            upload: {
+                url: '/manage/product/richtext_img_upload.do',
+                defaultImage: '',
+                fileKey: 'upload_file'
+            }
+        });
+        this.bindEditorEvent();
+    }
+
+    bindEditorEvent() {
+        this.simditor.on('valuechanged', e => {
+            this.props.onValueChange(this.simditor.getValue());
+        });
     }
 
     render() {
