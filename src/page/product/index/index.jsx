@@ -112,7 +112,7 @@ class ProductList extends React.Component {
                             return (
                                 <tr key={index}>
                                     <td>{product.id}</td>
-                                    <td>{product.name},{product.subtitle}</td>
+                                    <td>{product.name} | {product.subtitle}</td>
                                     <td>￥{product.price}</td>
                                     <td>
                                         {product.status == 1 ? <span className="label label-success">在售</span> :

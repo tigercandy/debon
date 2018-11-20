@@ -2,6 +2,7 @@ import React from 'react';
 import Simditor from 'simditor';
 
 import 'simditor/styles/simditor.scss';
+import './index.scss';
 
 class Editor extends React.Component {
     constructor(props) {
@@ -10,6 +11,12 @@ class Editor extends React.Component {
 
     componentDidMount() {
         this.loadEditor();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.defaultDetail !== nextProps.defaultDetail) {
+            this.simditor.setValue(nextProps.defaultDetail);
+        }
     }
 
     loadEditor() {

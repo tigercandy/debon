@@ -21,6 +21,28 @@ class CategorySelector extends React.Component {
         this.loadFirstCategory();
     }
 
+    componentWillReceiveProps(nextProps) {
+        let categoryIdChange = this.props.categoryId !== nextProps.categoryId,
+            parentCategoryIdChange = this.props.parentCategoryId !== nextProps.parentCategoryId;
+
+        if (!categoryIdChange && !parentCategoryIdChange) {
+            return;
+        }
+        if (nextProps.parentCategoryId === 0) {
+            this.setState({
+                firstCategoryId: nextProps.categoryId,
+                secondCategoryId: 0
+            })
+        } else {
+            this.setState({
+                firstCategoryId: nextProps.parentCategoryId,
+                secondCategoryId: nextProps.categoryId
+            }, () => {
+                parentCategoryIdChange && this.loadSecondCategory()
+            })
+        }
+    }
+
     loadFirstCategory() {
         _product.getCategoryList().then(res => {
             this.setState({
@@ -42,6 +64,9 @@ class CategorySelector extends React.Component {
     }
 
     onFirstCategoryChange(e) {
+        if (this.props.readOnly) {
+            return;
+        }
         let firstCategoryId = e.target.value || 0;
         this.setState({
             firstCategoryId: firstCategoryId,
@@ -54,6 +79,9 @@ class CategorySelector extends React.Component {
     }
 
     onSecondCategoryChange(e) {
+        if (this.props.readOnly) {
+            return;
+        }
         let secondCategoryId = e.target.value || 0;
         this.setState({
             secondCategoryId: secondCategoryId,
@@ -76,7 +104,9 @@ class CategorySelector extends React.Component {
             <div>
                 <div className="form-group input-group">
                     <span className="input-group-addon">一级分类 </span>
-                    <select className="form-control" onChange={(e) => this.onFirstCategoryChange(e)}>
+                    <select className="form-control" value={this.state.firstCategoryId}
+                            onChange={(e) => this.onFirstCategoryChange(e)}
+                            readOnly={this.props.readOnly}>
                         <option>请选择一级分类</option>
                         {
                             this.state.firstCategoryList.map((category, index) =>
@@ -89,7 +119,9 @@ class CategorySelector extends React.Component {
                     this.state.secondCategoryList.length ? (
                         <div className="form-group input-group">
                             <span className="input-group-addon">二级分类 </span>
-                            <select className="form-control" onChange={(e) => this.onSecondCategoryChange(e)}>
+                            <select className="form-control" value={this.state.secondCategoryId}
+                                    onChange={(e) => this.onSecondCategoryChange(e)}
+                                    readOnly={this.props.readOnly}>
                                 <option>请选择二级分类</option>
                                 {
                                     this.state.secondCategoryList.map((category, index) =>
