@@ -87,6 +87,16 @@ class Product {
             data: product
         });
     }
+
+    getProduct(id) {
+        return _mm.request({
+            type: 'POST',
+            url: '/manage/product/detail.do',
+            data: {
+                productId: id || 0
+            }
+        });
+    }
 }
 
 export default Product;

@@ -16,6 +16,7 @@ class ProductSave extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.product_id,
             name: '',
             subtitle: '',
             categoryId: 0,
@@ -25,6 +26,28 @@ class ProductSave extends React.Component {
             stock: '',
             detail: '',
             status: 1,
+        }
+    }
+
+    componentDidMount() {
+        this.loadProduct();
+    }
+
+    loadProduct() {
+        if (this.state.id) {
+            _product.getProduct(this.state.id).then((res) => {
+                let images = res.subImages.split(',');
+                res.subImages = images.map((img) => {
+                    return {
+                        uri: img,
+                        url: res.imageHost + res.mainImage
+                    }
+                });
+                res.defaultDetail = res.detail;
+                this.setState(res);
+            }, (errMsg) => {
+                _mm.errorTips(errMsg);
+            });
         }
     }
 
@@ -59,6 +82,9 @@ class ProductSave extends React.Component {
             status: this.state.status
         };
         let productRes = _product.checkProduct(product);
+        if (this.state.id) {
+            product.id = this.state.id;
+        }
         if (productRes.status) {
             _product.saveProduct(product).then((res) => {
                 _mm.successTips(res);
@@ -110,26 +136,28 @@ class ProductSave extends React.Component {
                             <div role="form">
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品名称 </span>
-                                    <input type="text" className="form-control" placeholder="商品名" name="name"
+                                    <input type="text" className="form-control" placeholder="商品名" name="name" value={this.state.name}
                                            onChange={(e) => this.onValueChange(e)}/>
                                 </div>
                                 <CategorySelector
+                                    categoryId={this.state.categoryId}
+                                    parentCategoryId={this.state.parentCategoryId}
                                     onCategoryChange={(categoryId, parentCategoryId) => this.onCategoryChange(categoryId, parentCategoryId)}/>
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品价格 </span>
-                                    <input type="text" className="form-control" placeholder="价格" name="price"
+                                    <input type="text" className="form-control" placeholder="价格" name="price" value={this.state.price}
                                            onChange={(e) => this.onValueChange(e)}/>
                                     <span className="input-group-addon">元</span>
                                 </div>
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品库存 </span>
-                                    <input type="text" className="form-control" placeholder="库存" name="stock"
+                                    <input type="text" className="form-control" placeholder="库存" name="stock" value={this.state.stock}
                                            onChange={(e) => this.onValueChange(e)}/>
                                     <span className="input-group-addon">件/个</span>
                                 </div>
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品简介 </span>
-                                    <textarea className="form-control" rows="3" name="subtitle"
+                                    <textarea className="form-control" rows="3" name="subtitle" value={this.state.subtitle}
                                               onChange={(e) => this.onValueChange(e)}></textarea>
                                 </div>
                                 <div className="form-group input-group">
@@ -148,7 +176,7 @@ class ProductSave extends React.Component {
                                               onError={(err) => this.onUploadError(err)}/>
                                 <div className="form-group input-group">
                                     <span className="input-group-addon">商品描述 </span>
-                                    <Editor onValueChange={(value) => this.onEditorValueChange(value)}/>
+                                    <Editor detail={this.state.detail} defaultDetail={this.state.defaultDetail} onValueChange={(value) => this.onEditorValueChange(value)}/>
                                 </div>
                                 <button className="btn btn-success pull-right" onClick={(e) => {
                                     this.onSave(e)
