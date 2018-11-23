@@ -1,0 +1,233 @@
+body {
+    margin: 0;
+    font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .65);
+    background-color: #fff;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.debon-text-white {
+    color: #fff !important;
+}
+
+#wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.debon-sider-menu-index-sider {
+    flex: 0 0 256px;
+    max-width: 256px;
+    min-width: 256px;
+    width: 256px;
+}
+
+.debon-menu-ul {
+    padding: 16px 0;
+    width: 100%;
+}
+
+.debon-menu-title {
+    padding-left: 24px !important;
+}
+
+.debon-menu-item {
+    padding-left: 48px !important;
+}
+
+.debon-layout {
+    min-height: 100vh;
+    padding-left: 256px;
+}
+
+.debon-layout-header {
+    padding: 0px;
+}
+
+.debon-layout-content {
+    margin: 24px 24px 0px;
+    padding-top: 0px;
+}
+
+.debon-row {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.debon-col-12-24 {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-bottom: 24px;
+}
+
+.debon-card-body {
+    padding: 20px 24px 8px;
+}
+
+.debon-page-header-wrapper-grid-content-main {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    transition: .3s;
+}
+
+.debon-charts-chart-card-index-chartCard {
+    position: relative;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-charts-chart-card-index-chartTop {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-charts-chart-card-index-avatar {
+    position: relative;
+    top: 4px;
+    float: left;
+    margin-right: 20px;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-charts-chart-card-index-metaWrap {
+    float: left;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-charts-chart-card-index-meta {
+    color: rgba(0, 0, 0, .45);
+    font-size: 14px;
+    line-height: 22px;
+    height: 22px;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-charts-chart-card-index-action {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.debon-charts-chart-card-index-chartCard .debon-trend-index-trendItem {
+    margin-right: 16px;
+}
+
+.debon-charts-chart-card-index-content {
+    height: 46px;
+}
+
+.debon-charts-index-miniChart {
+    height: 46px;
+}
+
+.span-display-none {
+    display: none;
+}
+
+.debon-index-statistic {
+    position: relative;
+}
+
+.debon-index-pv-canvas {
+    width: 348px;
+    height: 100px;
+    cursor: default;
+}
+
+.debon-tooltip {
+    position: absolute;
+    visibility: hidden;
+    z-index: 8;
+    transition: visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s, left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: rgb(174, 174, 174) 0px 0px 10px;
+    border-radius: 3px;
+    color: rgb(87, 87, 87);
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+    line-height: 20px;
+    padding: 10px 10px 6px;
+}
+
+.debon-tooltip-list {
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.debon-tooltip-marker {
+    background-color: rgb(151, 95, 228);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.debon-tooltip-value {
+    display: inline-block;
+    float: right;
+    margin-left: 30px;
+}
+
+.debon-tooltip-list li {
+    margin-bottom: 4px;
+}
+
+.debon-tooltip-marker-2 {
+    background-color: rgb(24, 144, 255);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.debon-charts-mini-progress-index-target {
+    left: 80%;
+}
+
+.debon-charts-mini-progress-index-target span {
+    background-color: rgb(19, 194, 194);
+}
+
+.debon-charts-mini-progress-index-progress {
+    background-color: rgb(19, 194, 194);
+    width: 78%;
+    height: 8px;
+}
+
+.debon-charts-chart-card-index-footer {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.debon-trend-index-trendItem {
+    margin-right: 16px;
+}
+
+.debon-tooltip-list li {
+    margin-bottom: 4px;
+}
+
+.debon-card-user {
+    background-color: rgb(24, 144, 255);
+}
+
+.debon-article-card {
+    background-color: rgb(133, 67, 224);
+}
+
+.debon-cate-card {
+    background-color: rgb(240, 72, 100);
+}
+
+.debon-tag-card {
+    background-color: rgb(250, 204, 20);
+}
