@@ -8,17 +8,17 @@ class Sidebar extends React.Component {
 
     render() {
         return (
-            <div className="ant-layout-sider ant-layout-sider-light debon-sider-menu-index-sider">
+            <div className="antd-pro-components-sider-menu-index-sider antd-pro-components-sider-menu-index-fixSiderbar antd-pro-components-sider-menu-index-light ant-layout-sider ant-layout-sider-light debon-sider-menu-index-sider">
                 <div className="ant-layout-sider-children">
-                    <div className="sider-menu-index-logo" id="logo">
+                    <div className="antd-pro-components-sider-menu-index-logo" id="logo">
                         <Link to="/">
                             <h1>Debon</h1>
                         </Link>
                     </div>
-                    <ul className="ant-menu ant-menu-dark ant-menu-root ant-menu-inline" role="menu">
+                    <ul className="ant-menu ant-menu-light ant-menu-root ant-menu-inline debon-menu-ul" role="menu">
                         <li className="ant-menu-submenu ant-menu-submenu-inline ant-menu-submenu-open ant-menu-submenu-selected"
                             role="menuitem">
-                            <div className="ant-menu-submenu-title" aria-expanded="true" aria-owns="/dashboard$Menu"
+                            <div className="ant-menu-submenu-title debon-menu-title" aria-expanded="true" aria-owns="/dashboard$Menu"
                                  aria-haspopup="true">
                                 <span>
                                     <i className="anticon anticon-dashboard">
@@ -36,14 +36,14 @@ class Sidebar extends React.Component {
                                 <i className="ant-menu-submenu-arrow"></i>
                             </div>
                             <ul id="/dashboard$Menu" className="ant-menu  ant-menu-sub ant-menu-inline" role="menu">
-                                <li className="ant-menu-item ant-menu-item-selected" role="menuitem">
+                                <li className="ant-menu-item ant-menu-item-selected debon-menu-item" role="menuitem">
                                     <a href="/dashboard/analysis">
                                         <span>分析页</span>
                                     </a>
                                 </li>
-                                <li className="ant-menu-item" role="menuitem"><a
+                                <li className="ant-menu-item debon-menu-item" role="menuitem"><a
                                     href="/dashboard/monitor"><span>监控页</span></a></li>
-                                <li className="ant-menu-item" role="menuitem"><a
+                                <li className="ant-menu-item debon-menu-item" role="menuitem"><a
                                     href="/dashboard/workplace"><span>工作台</span></a></li>
                             </ul>
                         </li>
