@@ -1,0 +1,119 @@
+.debon-row {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.debon-dashboard-card {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 24px;
+  .ant-card {
+    border-radius: 4px;
+  }
+}
+
+.debon-dashboard-card-user .ant-card {
+  background-color: rgb(24, 144, 255);
+}
+
+.debon-dashboard-card-article .ant-card {
+  background-color: rgb(133, 67, 224);
+}
+
+.debon-dashboard-card-category .ant-card {
+  background-color: rgb(19, 194, 194);
+}
+
+.debon-dashboard-card-tag .ant-card {
+  background-color: rgb(240, 72, 100);
+}
+
+.debon-dashboard-card-body {
+  padding: 20px 24px 8px;
+  .debon-dashboard-card-body-main {
+    position: relative;
+    .debon-dashboard-card-body-top {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      .debon-dashboard-card-body-title {
+        position: relative;
+        top: 4px;
+        float: left;
+        margin-right: 20px;
+      }
+      .debon-dashboard-card-body-metaWrap {
+        float: left;
+        .debon-dashboard-card-body-meta-title {
+          color: #fff;
+          font-size: 14px;
+          line-height: 22px;
+          height: 22px;
+        }
+        .debon-dashboard-card-body-meta-total {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-all;
+          white-space: nowrap;
+          color: #fff;
+          margin-top: 4px;
+          margin-bottom: 0;
+          font-size: 30px;
+          line-height: 38px;
+          height: 38px;
+        }
+      }
+    }
+    .debon-dashboard-card-body-content {
+      margin-bottom: 12px;
+      position: relative;
+      width: 100%;
+      height: 46px;
+      .debon-dashboard-card-body-contentFixed {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    }
+    .debon-dashboard-card-body-footer {
+      border-top: 1px solid #e8e8e8;
+      padding-top: 9px;
+      margin-top: 8px;
+      > * {
+        position: relative;
+      }
+      .debon-dashboard-card-body-footer-field {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+        .debon-dashboard-card-body-footer-field-label {
+          color: #fff;
+          font-size: 14px;
+          line-height: 22px;
+        }
+        .debon-dashboard-card-body-footer-field-value {
+          color: #fff;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+.debon-new-article-card, .debon-activity-card {
+  padding-left: 12px;
+  padding-right: 12px;
+  .debon-component-activity-card-list {
+    padding: 0 24px 8px;
+  }
+}
+
+.debon-component-dynamic-card-list-username {
+  color: rgba(0, 0, 0, .65);
+}
+
+.debon-component-dynamic-card-list-datetime {
+  color: rgba(0, 0, 0, .25);
+}
