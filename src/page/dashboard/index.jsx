@@ -1,5 +1,74 @@
 import React from 'react';
-import {Icon} from 'antd';
+import {Link} from 'react-router-dom';
+import {Icon, Table} from 'antd';
+
+import './dashboard.scss';
+
+const dataSource = [{
+    key: 1,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 2,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 3,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 4,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 5,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 6,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 7,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 8,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 9,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 10,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 11,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}, {
+    key: 12,
+    title: '掌握JavaScript：类和原型继承之间有什么区别？',
+    created_at: "2018-11-24 11:23:17",
+}];
+
+const dynamicData = [{
+    key: 1,
+    content: "添加了文章"
+}
+];
+
+const columns = [{
+    title: '标题',
+    dataIndex: 'title',
+    key: 'name',
+}, {
+    title: '创建时间',
+    dataIndex: 'created_at',
+    key: 'age',
+}];
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -8,197 +77,237 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="ant-row debon-row">
-                <div className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-col-12-24">
-                    <div className="ant-card debon-card-user">
-                        <div className="ant-card-body debon-card-body">
-                            <div className="antd-pro-components-charts-chart-card-index-chartCard">
-                                <div className="antd-pro-components-charts-chart-card-index-chartTop">
-                                    <div className="antd-pro-components-charts-chart-card-index-avatar"></div>
-                                    <div className="antd-pro-components-charts-chart-card-index-metaWrap">
-                                        <div className="antd-pro-components-charts-chart-card-index-meta debon-text-white">
+            <div>
+                <div className="ant-row debon-row">
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-dashboard-card debon-dashboard-card-user">
+                        <div className="ant-card">
+                            <div className="debon-dashboard-card-body">
+                                <div className="debon-dashboard-card-body-main">
+                                    <div className="debon-dashboard-card-body-top">
+                                        <div className="debon-dashboard-card-body-title"></div>
+                                        <div className="debon-dashboard-card-body-metaWrap">
+                                            <div className="debon-dashboard-card-body-meta-title">
                                             <span>
-                                                <span>总销售额</span>
+                                                <span>用户数</span>
                                             </span>
-                                            <span className="antd-pro-components-charts-chart-card-index-action">
-                                                <i className="anticon anticon-info-circle-o">
-                                                    <svg viewBox="64 64 896 896" className="" data-icon="info-circle"
-                                                         width="1em" height="1em" fill="currentColor"
-                                                         aria-hidden="true">
-                                                        <path
-                                                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
-                                                        <path
-                                                            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zM536 448h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
-                                                    </svg>
-                                                </i>
-                                            </span>
+                                            </div>
+                                            <div className="debon-dashboard-card-body-meta-total">
+                                                <span>126,560</span>
+                                            </div>
                                         </div>
-                                        <div className="antd-pro-components-charts-chart-card-index-total debon-text-white">
-                                            <span>¥ 126,560</span>
+                                    </div>
+                                    <div className="debon-dashboard-card-body-content">
+                                        <div className="debon-dashboard-card-body-contentFixed">
+
                                         </div>
                                     </div>
                                 </div>
-                                <div className="antd-pro-components-charts-chart-card-index-content debon-charts-chart-card-index-content debon-text-white">
-                                    <div className="antd-pro-components-charts-chart-card-index-contentFixed">
-                                        <Icon type="user" />
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-dashboard-card debon-dashboard-card-article">
+                        <div className="ant-card">
+                            <div className="debon-dashboard-card-body">
+                                <div className="debon-dashboard-card-body-main">
+                                    <div className="debon-dashboard-card-body-top">
+                                        <div className="debon-dashboard-card-body-title"></div>
+                                        <div className="debon-dashboard-card-body-metaWrap">
+                                            <div className="debon-dashboard-card-body-meta-title">
+                                            <span>
+                                                <span>文章数</span>
+                                            </span>
+                                            </div>
+                                            <div className="debon-dashboard-card-body-meta-total">
+                                                <span>126,560</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="debon-dashboard-card-body-content">
+                                        <div className="debon-dashboard-card-body-contentFixed">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-dashboard-card debon-dashboard-card-category">
+                        <div className="ant-card">
+                            <div className="debon-dashboard-card-body">
+                                <div className="debon-dashboard-card-body-main">
+                                    <div className="debon-dashboard-card-body-top">
+                                        <div className="debon-dashboard-card-body-title"></div>
+                                        <div className="debon-dashboard-card-body-metaWrap">
+                                            <div className="debon-dashboard-card-body-meta-title">
+                                            <span>
+                                                <span>分类数</span>
+                                            </span>
+                                            </div>
+                                            <div className="debon-dashboard-card-body-meta-total">
+                                                <span>126,560</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="debon-dashboard-card-body-content">
+                                        <div className="debon-dashboard-card-body-contentFixed">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-dashboard-card debon-dashboard-card-tag">
+                        <div className="ant-card">
+                            <div className="debon-dashboard-card-body">
+                                <div className="debon-dashboard-card-body-main">
+                                    <div className="debon-dashboard-card-body-top">
+                                        <div className="debon-dashboard-card-body-title"></div>
+                                        <div className="debon-dashboard-card-body-metaWrap">
+                                            <div className="debon-dashboard-card-body-meta-title">
+                                            <span>
+                                                <span>标签数</span>
+                                            </span>
+                                            </div>
+                                            <div className="debon-dashboard-card-body-meta-total">
+                                                <span>126,560</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="debon-dashboard-card-body-content">
+                                        <div className="debon-dashboard-card-body-contentFixed">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-col-12-24">
-                    <div className="ant-card debon-article-card">
-                        <div className="ant-card-body debon-card-body">
-                            <div className="antd-pro-components-charts-chart-card-index-chartCard">
-                                <div className="antd-pro-components-charts-chart-card-index-chartTop">
-                                    <div className="antd-pro-components-charts-chart-card-index-avatar"></div>
-                                    <div className="antd-pro-components-charts-chart-card-index-metaWrap">
-                                        <div className="antd-pro-components-charts-chart-card-index-meta debon-text-white">
-                                            <span>
-                                                <span>访问量</span>
-                                            </span>
-                                            <span className="antd-pro-components-charts-chart-card-index-action">
-                                                <i className="anticon anticon-info-circle-o">
-                                                    <svg viewBox="64 64 896 896" className="" data-icon="info-circle"
-                                                         width="1em" height="1em" fill="currentColor"
-                                                         aria-hidden="true">
-                                                        <path
-                                                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path
-                                                        d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zM536 448h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
-                                                    </svg>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <div className="antd-pro-components-charts-chart-card-index-total debon-text-white">8,846</div>
+                <div className="ant-row debon-row">
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-12 debon-new-article-card">
+                        <div className="ant-card">
+                            <div className="ant-card-head">
+                                <div className="ant-card-head-wrapper">
+                                    <div className="ant-card-head-title">
+                                        <span>最新文章</span>
                                     </div>
                                 </div>
-                                <div
-                                    className="antd-pro-components-charts-chart-card-index-content debon-charts-chart-card-index-content">
-                                    <div className="antd-pro-components-charts-chart-card-index-contentFixed">
-                                        <div>
-                                            <div
-                                                className="antd-pro-components-charts-index-miniChart debon-charts-index-miniChart">
-                                                <div className="antd-pro-components-charts-index-chartContent">
-                                                    <div>
-                                                        <div>
-                                                            <span className="span-display-none"></span>
-                                                            <div className="debon-index-statistic">
-                                                                <canvas className="debon-index-pv-canvas" id="canvas_49"
-                                                                        width="696" height="200"></canvas>
-                                                                <div className="g2-tooltip debon-tooltip">
-                                                                    <div className="g2-tooltip-title"></div>
-                                                                    <ul className="g2-tooltip-list debon-tooltip-list">
-                                                                        <li data-index="0">
-                                                                            <span
-                                                                                className="g2-tooltip-marker debon-tooltip-marker"></span>
-                                                                            2018-11-26
-                                                                            <span
-                                                                                className="g2-tooltip-value debon-tooltip-value">
-                                                                                7
+                            </div>
+                            <div className="ant-card-body">
+                                <Table dataSource={dataSource} columns={columns} size="small"
+                                       pagination={{pageSize: 5}}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-12 debon-activity-card">
+                        <div className="ant-card">
+                            <div className="ant-card-head">
+                                <div className="ant-card-head-wrapper">
+                                    <div className="ant-card-head-title">
+                                        <span>动态</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="ant-card-body">
+                                <div className="ant-list ant-list-lg ant-list-split">
+                                    <div className="ant-spin-nested-loading">
+                                        <div className="ant-spin-container">
+                                            <div className="debon-component-activity-card-list">
+                                                <div className="ant-list-item">
+                                                    <div className="ant-list-item-meta">
+                                                        <div className="ant-list-item-meta-avatar">
+                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                        </div>
+                                                        <div className="ant-list-item-meta-content">
+                                                            <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
+                                                                            <span className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
                                                                             </span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                        </span>
+                                                            </h4>
+                                                            <div className="ant-list-item-meta-description">
+                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-col-12-24">
-                    <div className="ant-card debon-cate-card">
-                        <div className="ant-card-body debon-card-body">
-                            <div className="antd-pro-components-charts-chart-card-index-chartCard">
-                                <div className="antd-pro-components-charts-chart-card-index-chartTop">
-                                    <div className="antd-pro-components-charts-chart-card-index-avatar"></div>
-                                    <div className="antd-pro-components-charts-chart-card-index-metaWrap">
-                                        <div className="antd-pro-components-charts-chart-card-index-meta debon-text-white">
-                                            <span><span>支付笔数</span></span><span
-                                            className="antd-pro-components-charts-chart-card-index-action"><i
-                                            className="anticon anticon-info-circle-o"><svg
-                                            viewBox="64 64 896 896" className="" data-icon="info-circle"
-                                            width="1em" height="1em" fill="currentColor" aria-hidden="true"><path
-                                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path
-                                            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zM536 448h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path></svg></i></span>
-                                        </div>
-                                        <div
-                                            className="antd-pro-components-charts-chart-card-index-total debon-text-white">6,560
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="antd-pro-components-charts-chart-card-index-content debon-charts-chart-card-index-content">
-                                    <div className="antd-pro-components-charts-chart-card-index-contentFixed">
-                                        <div>
-                                            <div className="antd-pro-components-charts-index-miniChart debon-charts-index-miniChart">
-                                                <div className="antd-pro-components-charts-index-chartContent">
-                                                    <div>
-                                                        <div>
-                                                            <div className="debon-index-statistic">
-                                                                <canvas className="debon-index-pv-canvas" id="canvas_50"
-                                                                        width="696" height="200"></canvas>
-                                                                <div className="g2-tooltip debon-tooltip">
-                                                                    <div className="g2-tooltip-title"></div>
-                                                                    <ul className="g2-tooltip-list debon-tooltip-list">
-                                                                        <li data-index="0">
-                                                                            <span
-                                                                                className="g2-tooltip-marker debon-tooltip-marker-2"></span>2018-11-30
-                                                                            <span
-                                                                                className="g2-tooltip-value debon-tooltip-value">9</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                <div className="ant-list-item">
+                                                    <div className="ant-list-item-meta">
+                                                        <div className="ant-list-item-meta-avatar">
+                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                        </div>
+                                                        <div className="ant-list-item-meta-content">
+                                                            <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
+                                                                            <span className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                            </h4>
+                                                            <div className="ant-list-item-meta-description">
+                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="ant-col-xs-24 ant-col-sm-12 ant-col-md-12 ant-col-lg-12 ant-col-xl-6 debon-col-12-24">
-                    <div className="ant-card debon-tag-card">
-                        <div className="ant-card-body debon-card-body">
-                            <div className="antd-pro-components-charts-chart-card-index-chartCard">
-                                <div className="antd-pro-components-charts-chart-card-index-chartTop">
-                                    <div className="antd-pro-components-charts-chart-card-index-avatar"></div>
-                                    <div className="antd-pro-components-charts-chart-card-index-metaWrap">
-                                        <div className="antd-pro-components-charts-chart-card-index-meta debon-text-white">
-                                            <span><span>运营活动效果</span></span><span
-                                            className="antd-pro-components-charts-chart-card-index-action"><i
-                                            className="anticon anticon-info-circle-o"><svg
-                                            viewBox="64 64 896 896" className="" data-icon="info-circle"
-                                            width="1em" height="1em" fill="currentColor" aria-hidden="true"><path
-                                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path
-                                            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zM536 448h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path></svg></i></span>
-                                        </div>
-                                        <div className="antd-pro-components-charts-chart-card-index-total debon-text-white">78%
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    className="antd-pro-components-charts-chart-card-index-content debon-charts-index-miniChart">
-                                    <div className="antd-pro-components-charts-chart-card-index-contentFixed">
-                                        <div
-                                            className="antd-pro-components-charts-mini-progress-index-miniProgress">
-                                            <div
-                                                className="antd-pro-components-charts-mini-progress-index-target debon-charts-mini-progress-index-target">
-                                                <span></span>
-                                                <span></span>
-                                            </div>
-                                            <div
-                                                className="antd-pro-components-charts-mini-progress-index-progressWrap">
-                                                <div className="antd-pro-components-charts-mini-progress-index-progress debon-charts-mini-progress-index-progress"></div>
+                                                <div className="ant-list-item">
+                                                    <div className="ant-list-item-meta">
+                                                        <div className="ant-list-item-meta-avatar">
+                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                        </div>
+                                                        <div className="ant-list-item-meta-content">
+                                                            <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
+                                                                            <span className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                            </h4>
+                                                            <div className="ant-list-item-meta-description">
+                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="ant-list-item">
+                                                    <div className="ant-list-item-meta">
+                                                        <div className="ant-list-item-meta-avatar">
+                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                        </div>
+                                                        <div className="ant-list-item-meta-content">
+                                                            <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
+                                                                            <span className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                            </h4>
+                                                            <div className="ant-list-item-meta-description">
+                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

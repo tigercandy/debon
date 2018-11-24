@@ -1,0 +1,64 @@
+.debon-component-page-header {
+  background: #fff;
+  padding: 16px 32px 0;
+  border-bottom: 1px solid #e8e8e8;
+  .debon-component-page-header-title {
+    display: flex;
+  }
+  .debon-component-breadcrumb {
+    margin-bottom: 16px;
+  }
+  .debon-component-page-header-title-main {
+    width: 100%;
+  }
+  .debon-component-page-header-title-main-row {
+    display: flex;
+    width: 100%;
+    .debon-component-page-header-title-main-title {
+      margin-bottom: 16px;
+      flex: auto;
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, .85);
+    }
+  }
+}
+
+.debon-component-page-content-main {
+  margin-top: 20px;
+}
+
+.debon-component-search-row {
+  margin-left: -24px;
+  margin-right: -24px;
+  .debon-component-search-input {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.debon-component-pages-list-table-list-tableListForm {
+  .ant-form-item {
+    margin-bottom: 24px;
+    margin-right: 0;
+    display: flex;
+  }
+  .ant-form-item-control-wrapper {
+    flex: 1 1;
+  }
+  .debon-component-search-button {
+    display: block;
+    white-space: nowrap;
+    margin-bottom: 24px;
+  }
+  .debon-component-btn-reset {
+    margin-left: 8px;
+  }
+  .debon-component-link-spread {
+    margin-left: 8px;
+  }
+}
+
+.debon-component-pages-list-table-list-tableListOperator, .debon-component-standard-table-index-tableAlert {
+  margin-bottom: 16px;
+}
