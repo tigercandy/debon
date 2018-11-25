@@ -28,7 +28,7 @@ class Search extends React.Component {
                             </div>
                             <div className="ant-col-sm-24 ant-col-md-8 debon-component-search-input">
                                 <FormItem label="分类">
-                                    <Select>
+                                    <Select placeholder="请选择分类">
                                         <Option value="">PHP</Option>
                                         <Option value="">Golang</Option>
                                     </Select>
@@ -37,7 +37,7 @@ class Search extends React.Component {
                             <div className="ant-col-sm-24 ant-col-md-8 debon-component-search-input">
                         <span className="debon-component-search-button">
                             <FormItem>
-                                <Button type="primary" htmlType="button">查询</Button>
+                                <Button type="primary" htmlType="button" icon="search">查询</Button>
                                 <Button className="debon-component-btn-reset" type="default"
                                         htmlType="button">重置</Button>
                                 <Link className="debon-component-link-spread" to="/">

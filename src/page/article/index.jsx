@@ -1,11 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Breadcrumb, Form, Icon, Input, Button, Skeleton, Spin} from 'antd';
+import {Breadcrumb, Form, Icon, Input, Button, Skeleton, Spin, Table, Tag, Divider, Pagination} from 'antd';
+
+import {LocaleProvider} from 'antd';
+
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 
 import Search from 'page/article/search.jsx';
 
 
 import './index.scss';
+
+const Column = Table;
 
 const routes = [{
     path: 'index',
@@ -18,6 +24,106 @@ const routes = [{
     breadcrumbName: '当前页面'
 }];
 
+const dataSource = [{
+    key: 1,
+    id: 1,
+    title: '文章名称一',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 2,
+    id: 1,
+    title: '文章名称二',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 3,
+    id: 1,
+    title: '文章名称三',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 4,
+    id: 1,
+    title: '文章名称四',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 5,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 6,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 7,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 8,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 9,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 10,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 11,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 12,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 13,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 14,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 15,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}, {
+    key: 16,
+    id: 1,
+    title: '文章名称五',
+    tags: ['PHP', '后端'],
+    create_at: '2018-11-22 12:31:23'
+}];
+
+const columns = [];
+
 function itemRender(route, params, routes, paths) {
     const last = routes.indexOf(route) === routes.length - 1;
     return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>;
@@ -27,6 +133,18 @@ function itemRender(route, params, routes, paths) {
 class Article extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            loading: false,
+        };
+    }
+
+    componentDidMount() {
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            })
+        }, 2000)
     }
 
     render() {
@@ -50,13 +168,31 @@ class Article extends React.Component {
                                 <div className="debon-component-pages-list-table-list-tableList">
                                     <Search/>
                                     <div className="debon-component-standard-table-index-standardTable">
-                                        {/*<div className="debon-component-standard-table-index-tableAlert">
-                                            <div data-show="true" className="ant-alert ant-alert-info">
-                                                <Icon type="exclamation-circle" />
-                                            </div>
-                                        </div>*/}
                                         <div className="ant-table-wrapper">
-                                            <Spin/>
+                                            <Spin spinning={this.state.loading}>
+                                                <Table dataSource={dataSource} pagination={{
+                                                    pageSize: 10,
+                                                    showQuickJumper: true
+                                                }}>
+                                                    <Column title="ID" dataIndex="id" key="id"/>
+                                                    <Column title="标题" dataIndex="title" key="title"/>
+                                                    <Column title="标签" dataIndex="tags" key="tags" render={tags => (
+                                                        <span>
+                                                            {tags.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
+                                                        </span>
+                                                    )}/>
+                                                    <Column title="创建时间" dataIndex="create_at" key="create_at"/>
+                                                    <Column title="操作" key="action" render={(text, record) => (
+                                                        <span>
+                                                            <Link to="/">查看</Link>
+                                                            <Divider type="vertical"/>
+                                                            <Link to="/">编辑</Link>
+                                                            <Divider type="vertical"/>
+                                                            <Link to="/">删除</Link>
+                                                        </span>
+                                                    )}/>
+                                                </Table>
+                                            </Spin>
                                         </div>
                                     </div>
                                 </div>
