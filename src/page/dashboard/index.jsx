@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Icon, Table} from 'antd';
+import {Icon, Table, Skeleton} from 'antd';
 
 import './dashboard.scss';
 
@@ -73,6 +73,18 @@ const columns = [{
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            loading: false
+        }
+    }
+
+    componentDidMount() {
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            })
+        }, 2000);
     }
 
     render() {
@@ -200,8 +212,10 @@ class Dashboard extends React.Component {
                                 </div>
                             </div>
                             <div className="ant-card-body">
-                                <Table dataSource={dataSource} columns={columns} size="small"
-                                       pagination={{pageSize: 5}}/>
+                                <Skeleton active loading={this.state.loading} title={false} paragraph={{rows: 5}}>
+                                    <Table dataSource={dataSource} columns={columns} size="small"
+                                           pagination={{pageSize: 5}}/>
+                                </Skeleton>
                             </div>
                         </div>
                     </div>
@@ -219,96 +233,122 @@ class Dashboard extends React.Component {
                                 <div className="ant-list ant-list-lg ant-list-split">
                                     <div className="ant-spin-nested-loading">
                                         <div className="ant-spin-container">
-                                            <div className="debon-component-activity-card-list">
-                                                <div className="ant-list-item">
-                                                    <div className="ant-list-item-meta">
-                                                        <div className="ant-list-item-meta-avatar">
-                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                            <Skeleton loading={this.state.loading} active paragraph={{rows: 5}}>
+                                                <div className="debon-component-activity-card-list">
+                                                    <div className="ant-list-item">
+                                                        <div className="ant-list-item-meta">
+                                                            <div className="ant-list-item-meta-avatar">
+                                                                    <span
+                                                                        className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img
+                                                                            src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
                                                                     </span>
-                                                        </div>
-                                                        <div className="ant-list-item-meta-content">
-                                                            <h4 className="ant-list-item-meta-title">
+                                                            </div>
+                                                            <div className="ant-list-item-meta-content">
+                                                                <h4 className="ant-list-item-meta-title">
                                                                         <span>
-                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
-                                                                            <span className="debon-component-dynamic-card-list-event">
-                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            <Link to="/"
+                                                                                  className="debon-component-dynamic-card-list-username"/>
+                                                                            <span
+                                                                                className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link
+                                                                                to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
                                                                             </span>
                                                                         </span>
-                                                            </h4>
-                                                            <div className="ant-list-item-meta-description">
-                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                                </h4>
+                                                                <div className="ant-list-item-meta-description">
+                                                                <span
+                                                                    className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="ant-list-item">
+                                                        <div className="ant-list-item-meta">
+                                                            <div className="ant-list-item-meta-avatar">
+                                                                    <span
+                                                                        className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img
+                                                                            src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                            </div>
+                                                            <div className="ant-list-item-meta-content">
+                                                                <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/"
+                                                                                  className="debon-component-dynamic-card-list-username"/>
+                                                                            <span
+                                                                                className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link
+                                                                                to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                                </h4>
+                                                                <div className="ant-list-item-meta-description">
+                                                                <span
+                                                                    className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="ant-list-item">
+                                                        <div className="ant-list-item-meta">
+                                                            <div className="ant-list-item-meta-avatar">
+                                                                    <span
+                                                                        className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img
+                                                                            src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                            </div>
+                                                            <div className="ant-list-item-meta-content">
+                                                                <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/"
+                                                                                  className="debon-component-dynamic-card-list-username"/>
+                                                                            <span
+                                                                                className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link
+                                                                                to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                                </h4>
+                                                                <div className="ant-list-item-meta-description">
+                                                                <span
+                                                                    className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="ant-list-item">
+                                                        <div className="ant-list-item-meta">
+                                                            <div className="ant-list-item-meta-avatar">
+                                                                    <span
+                                                                        className="ant-avatar ant-avatar-circle ant-avatar-image">
+                                                                        <img
+                                                                            src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
+                                                                    </span>
+                                                            </div>
+                                                            <div className="ant-list-item-meta-content">
+                                                                <h4 className="ant-list-item-meta-title">
+                                                                        <span>
+                                                                            <Link to="/"
+                                                                                  className="debon-component-dynamic-card-list-username"/>
+                                                                            <span
+                                                                                className="debon-component-dynamic-card-list-event">
+                                                                                添加了文章 <Link
+                                                                                to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
+                                                                            </span>
+                                                                        </span>
+                                                                </h4>
+                                                                <div className="ant-list-item-meta-description">
+                                                                <span
+                                                                    className="debon-component-dynamic-card-list-datetime">3天前</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="ant-list-item">
-                                                    <div className="ant-list-item-meta">
-                                                        <div className="ant-list-item-meta-avatar">
-                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
-                                                                    </span>
-                                                        </div>
-                                                        <div className="ant-list-item-meta-content">
-                                                            <h4 className="ant-list-item-meta-title">
-                                                                        <span>
-                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
-                                                                            <span className="debon-component-dynamic-card-list-event">
-                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
-                                                                            </span>
-                                                                        </span>
-                                                            </h4>
-                                                            <div className="ant-list-item-meta-description">
-                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="ant-list-item">
-                                                    <div className="ant-list-item-meta">
-                                                        <div className="ant-list-item-meta-avatar">
-                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
-                                                                    </span>
-                                                        </div>
-                                                        <div className="ant-list-item-meta-content">
-                                                            <h4 className="ant-list-item-meta-title">
-                                                                        <span>
-                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
-                                                                            <span className="debon-component-dynamic-card-list-event">
-                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
-                                                                            </span>
-                                                                        </span>
-                                                            </h4>
-                                                            <div className="ant-list-item-meta-description">
-                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="ant-list-item">
-                                                    <div className="ant-list-item-meta">
-                                                        <div className="ant-list-item-meta-avatar">
-                                                                    <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                                                                        <img src="https://avatars1.githubusercontent.com/u/8286273?s=460&v=4"/>
-                                                                    </span>
-                                                        </div>
-                                                        <div className="ant-list-item-meta-content">
-                                                            <h4 className="ant-list-item-meta-title">
-                                                                        <span>
-                                                                            <Link to="/" className="debon-component-dynamic-card-list-username"/>
-                                                                            <span className="debon-component-dynamic-card-list-event">
-                                                                                添加了文章 <Link to="">掌握JavaScript：类和原型继承之间有什么区别？</Link>
-                                                                            </span>
-                                                                        </span>
-                                                            </h4>
-                                                            <div className="ant-list-item-meta-description">
-                                                                <span className="debon-component-dynamic-card-list-datetime">3天前</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </Skeleton>
                                         </div>
                                     </div>
                                 </div>
