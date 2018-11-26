@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import {Icon} from 'antd';
+import {Icon, Menu} from 'antd';
 
 import './sider.scss';
+
+const {SubMenu} = Menu;
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -18,46 +20,38 @@ class Sidebar extends React.Component {
                             <h1>Debon</h1>
                         </Link>
                     </div>
-                    <ul className="ant-menu ant-menu-root ant-menu-inline debon-component-menu-ul" role="menu">
-                        <li className="ant-menu-submenu ant-menu-item-selected" role="menuitem">
-                            <div className="ant-menu-submenu-title debon-parent-menu" aria-expanded="true" aria-haspopup="true">
-                                <Link to="/">
-                                    <Icon type="dashboard" />
-                                    <span>控制面板</span>
+                    <Menu style={{padding: '16px 0px', width: '100%'}} defaultSelectedKeys={['1']}
+                          defaultOpenKeys={['sub1']}
+                          mode='inline' inlineCollapsed={this.props.collapsed} theme='light'>
+                        <Menu.Item key='1'>
+                            <Link to='/'>
+                                <Icon type='dashboard'/><span>控制面板</span>
+                            </Link>
+                        </Menu.Item>
+                        <SubMenu key='sub1' title={<span><Icon type="form"/><span>文章管理</span></span>}>
+                            <Menu.Item key='3'>
+                                <Link to='/article'>
+                                    <Icon type="bars"/><span>文章列表</span>
                                 </Link>
-                            </div>
-                        </li>
-                        <li className="ant-menu-submenu ant-menu-inline" role="menuitem">
-                            <div className="ant-menu-submenu-title debon-parent-menu" aria-expanded="true" aria-haspopup="true">
-                                <span>
-                                    <Icon type="form" />
-                                    <span>文章管理</span>
-                                </span>
-                                <i className="ant-menu-submenu-arrow"></i>
-                            </div>
-                            <ul className="ant-menu ant-menu-sub ant-menu-inline debon-component-menu-ul-sub">
-                                <li className="ant-menu-item" role="menuitem">
-                                    <Link to="/article">
-                                        <Icon type="bars" />
-                                        <span>文章列表</span>
-                                    </Link>
-                                </li>
-                                <li className="ant-menu-item" role="menuitem">
-                                    <Link to="/">
-                                        <Icon type="book" />
-                                        <span>分类管理</span>
-                                    </Link>
-                                </li>
-                                <li className="ant-menu-item" role="menuitem">
-                                    <Link to="/">
-                                        <Icon type="tags" />
-                                        <span>标签管理</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
+                            </Menu.Item>
+                            <Menu.Item key='4'><Icon type="book"/> 分类管理</Menu.Item>
+                            <Menu.Item key='5'><Icon type="tags"/> 标签管理</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key='sub2' title={<span><Icon type="user" /><span>用户管理</span></span>}>
+                            <Menu.Item key='6'>
+                                <Link to='/user'>
+                                    <Icon type="team" /><span>用户列表</span>
+                                </Link>
+                            </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key='sub3' title={<span><Icon type="setting" /><span>设置</span></span>}>
+                            <Menu.Item key='7'>
+                                <Link to='/system'>
+                                    <Icon type="info-circle" /><span>系统信息</span>
+                                </Link>
+                            </Menu.Item>
+                        </SubMenu>
+                    </Menu>
                 </div>
             </div>
         );
