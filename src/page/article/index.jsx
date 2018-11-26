@@ -149,7 +149,7 @@ class Article extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="debon-article-list-container">
                 <div className="debon-component-page-header">
                     <Breadcrumb className="debon-component-breadcrumb" itemRender={itemRender} routes={routes}/>
                     <div className="debon-component-page-header-title">
