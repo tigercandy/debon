@@ -28,28 +28,8 @@ const dataSource = [{
     key: 6,
     title: '掌握JavaScript：类和原型继承之间有什么区别？',
     created_at: "2018-11-24 11:23:17",
-}, {
+},{
     key: 7,
-    title: '掌握JavaScript：类和原型继承之间有什么区别？',
-    created_at: "2018-11-24 11:23:17",
-}, {
-    key: 8,
-    title: '掌握JavaScript：类和原型继承之间有什么区别？',
-    created_at: "2018-11-24 11:23:17",
-}, {
-    key: 9,
-    title: '掌握JavaScript：类和原型继承之间有什么区别？',
-    created_at: "2018-11-24 11:23:17",
-}, {
-    key: 10,
-    title: '掌握JavaScript：类和原型继承之间有什么区别？',
-    created_at: "2018-11-24 11:23:17",
-}, {
-    key: 11,
-    title: '掌握JavaScript：类和原型继承之间有什么区别？',
-    created_at: "2018-11-24 11:23:17",
-}, {
-    key: 12,
     title: '掌握JavaScript：类和原型继承之间有什么区别？',
     created_at: "2018-11-24 11:23:17",
 }];
@@ -214,7 +194,7 @@ class Dashboard extends React.Component {
                             <div className="ant-card-body">
                                 <Skeleton active loading={this.state.loading} title={false} paragraph={{rows: 5}}>
                                     <Table dataSource={dataSource} columns={columns} size="small"
-                                           pagination={{pageSize: 5}}/>
+                                           pagination={false}/>
                                 </Skeleton>
                             </div>
                         </div>

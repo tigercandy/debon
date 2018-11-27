@@ -1,0 +1,38 @@
+.debon-component-not-found-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 500px;
+  .debon-component-not-found-image-block {
+    flex: 0 0 62.5%;
+    width: 62.5%;
+    padding-right: 152px;
+    zoom: 1;
+    .debon-component-not-found-image-backgroup {
+      background-image: url("./rOa3i22iSwj7PtmM.svg");
+      height: 360px;
+      width: 100%;
+      max-width: 430px;
+      float: right;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: contain;
+    }
+  }
+  .debon-component-not-fount-404-text {
+    flex: auto;
+    h1 {
+      color: #434e59;
+      font-size: 72px;
+      font-weight: 600;
+      line-height: 72px;
+      margin-bottom: 24px;
+    }
+    .debon-component-not-fount-desc {
+      color: rgba(0, 0, 0, .45);
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 16px;
+    }
+  }
+}
