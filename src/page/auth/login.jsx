@@ -2,21 +2,36 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
 
+import CommonUtil from 'util/common.jsx';
+import Auth from 'service/auth.jsx';
+
 import 'antd/dist/antd.min.css';
 import './login.scss';
 
 const FormItem = Form.Item;
+const _cutil = new CommonUtil();
+const _auth = new Auth();
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            redirect: '/'
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, loginInfo) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                _auth.login(loginInfo).then((res) => {
+                    _cutil.setStorage('auth_info', res);
+                    this.props.history.push(this.state.redirect);
+                }, (errMsg) => {
+                    _cutil.errorTips(errMsg);
+                })
+            } else {
+                _cutil.errorTips(err);
             }
         });
     }
@@ -36,18 +51,24 @@ class Login extends React.Component {
                     <div className="ant-card-body">
                         <Form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
                             <FormItem>
-                                {getFieldDecorator('userName', {
-                                    rules: [{required: true, message: '请输入用户名或邮箱!'}],
+                                {getFieldDecorator('email', {
+                                    rules: [{
+                                        type: 'email', 'message': '请输入正确的邮箱!'
+                                    }, {
+                                        required: true,
+                                        message: '请输入邮箱!'
+                                    }],
                                 })(
-                                    <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           placeholder="邮箱/用户名"/>
+                                    <Input name='email' prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                           placeholder="邮箱"/>
                                 )}
                             </FormItem>
                             <FormItem>
                                 {getFieldDecorator('password', {
                                     rules: [{required: true, message: '请输入密码!'}],
                                 })(
-                                    <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                    <Input name='password'
+                                           prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                            type="password"
                                            placeholder="密码"/>
                                 )}
