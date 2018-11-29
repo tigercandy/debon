@@ -97,14 +97,10 @@ module.exports = {
             index: '/dist/'
         },
         proxy: {
-            '/manage': {
-                target: 'http://admintest.happymmall.com',
+            '/api': {
+                target: 'http://127.0.0.1:8085',
                 changeOrigin: true
             },
-            '/user/logout.do': {
-                target: 'http://admintest.happymmall.com',
-                changeOrigin: true
-            }
         }
     }
 };

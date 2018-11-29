@@ -1,13 +1,15 @@
-import CommonUtil from 'util/common.jsx';
+import MUtil from 'util/mm.jsx';
 
-const _cutil = new CommonUtil();
+const _mm = new MUtil();
 
 class Auth {
     login(data) {
-        return _cutil.request({
+        return _mm.request({
             type: 'POST',
-            url: '/auth',
+            url: '/api/auth',
             data: data
         });
     }
 }
+
+export default Auth;
