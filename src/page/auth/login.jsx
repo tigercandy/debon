@@ -2,21 +2,21 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
 
-import CommonUtil from 'util/common.jsx';
+import MUtil from 'util/mm.jsx';
 import Auth from 'service/auth.jsx';
 
 import 'antd/dist/antd.min.css';
 import './login.scss';
 
 const FormItem = Form.Item;
-const _cutil = new CommonUtil();
+const _mm = new MUtil();
 const _auth = new Auth();
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: '/'
+            redirect: _mm.getUrlParam('redirect') || '/'
         }
     }
 
@@ -25,13 +25,14 @@ class Login extends React.Component {
         this.props.form.validateFields((err, loginInfo) => {
             if (!err) {
                 _auth.login(loginInfo).then((res) => {
-                    _cutil.setStorage('auth_info', res);
+                    _mm.setStorage('auth_info', res);
+                    _mm.successTips("登录成功");
                     this.props.history.push(this.state.redirect);
                 }, (errMsg) => {
-                    _cutil.errorTips(errMsg);
+                    _mm.errorTips(errMsg);
                 })
             } else {
-                _cutil.errorTips(err);
+                _mm.errorTips(err);
             }
         });
     }
