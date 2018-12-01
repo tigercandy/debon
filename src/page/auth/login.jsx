@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Form, Icon, Input, Button, Checkbox} from 'antd';
+import {Form, Icon, Input, Button} from 'antd';
 
 import MUtil from 'util/mm.jsx';
 import Auth from 'service/auth.jsx';
