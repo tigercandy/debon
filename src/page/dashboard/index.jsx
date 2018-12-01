@@ -1,6 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Icon, Table, Skeleton} from 'antd';
+import {Table, Skeleton} from 'antd';
+
+import MUtil from 'util/mm.jsx';
+import Statistics from 'service/statistics.jsx';
+
+const _mm = new MUtil();
+const _statistics = new Statistics();
 
 import './dashboard.scss';
 
@@ -28,7 +34,7 @@ const dataSource = [{
     key: 6,
     title: '掌握JavaScript：类和原型继承之间有什么区别？',
     created_at: "2018-11-24 11:23:17",
-},{
+}, {
     key: 7,
     title: '掌握JavaScript：类和原型继承之间有什么区别？',
     created_at: "2018-11-24 11:23:17",
@@ -54,17 +60,30 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false
+            loading: false,
+            userCount: '-',
+            articleCount: '-',
+            tagCount: '-',
+            categoryCount: '-'
         }
     }
 
     componentDidMount() {
+        this.loadCount();
         this.setState({loading: true});
         setTimeout(() => {
             this.setState({
                 loading: false
             })
         }, 2000);
+    }
+
+    loadCount() {
+        _statistics.getDashboardCount().then(res => {
+            this.setState(res);
+        }, errMsg => {
+            _mm.errorTips(errMsg);
+        })
     }
 
     render() {
@@ -85,7 +104,7 @@ class Dashboard extends React.Component {
                                             </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
-                                                <span>126,560</span>
+                                                <span>{this.state.userCount}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +131,7 @@ class Dashboard extends React.Component {
                                             </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
-                                                <span>126,560</span>
+                                                <span>{this.state.articleCount}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +158,7 @@ class Dashboard extends React.Component {
                                             </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
-                                                <span>126,560</span>
+                                                <span>{this.state.categoryCount}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +185,7 @@ class Dashboard extends React.Component {
                                             </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
-                                                <span>126,560</span>
+                                                <span>{this.state.tagCount}</span>
                                             </div>
                                         </div>
                                     </div>

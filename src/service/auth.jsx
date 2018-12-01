@@ -6,7 +6,15 @@ class Auth {
     login(data) {
         return _mm.request({
             type: 'POST',
-            url: '/api/auth',
+            url: '/api/auth/login',
+            data: data
+        });
+    }
+
+    logout(data) {
+        return _mm.request({
+            type: 'POST',
+            url: '/api/auth/logout',
             data: data
         });
     }

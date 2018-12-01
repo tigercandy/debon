@@ -6,7 +6,7 @@ import Layout from 'component/layout/index.jsx';
 import Dashboard from 'page/dashboard/index.jsx';
 import Login from 'page/auth/login.jsx';
 import Article from 'page/article/index.jsx';
-import Errorpage from 'page/error/index.jsx';
+import ErrorPage from 'page/error/index.jsx';
 
 class App extends React.Component {
     render() {
@@ -16,7 +16,7 @@ class App extends React.Component {
                     <Route exact path="/" component={Dashboard}/>
                     <Route path="/article" component={Article}/>
 
-                    <Route component={Errorpage}></Route>
+                    <Route component={ErrorPage}></Route>
                 </Switch>
             </Layout>
         );

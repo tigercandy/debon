@@ -11,11 +11,19 @@ class MUtil {
             }).then(function (response) {
                 if (200 === response.data.code) {
                     typeof resolve === 'function' && resolve(response.data.data, response.data.msg);
+                } else if (20000 <= response.data.code < 30000) {
+                    this.doLogin();
                 } else {
                     typeof resolve === 'function' && reject(response.data.msg || response.data.data);
                 }
-            }).catch(function (error) {
-                typeof reject === 'function' && reject(error.statusText);
+            }).catch((error) => {
+                const response = error.response;
+                typeof reject === 'function' && reject(response.data.msg);
+                if (20000 <= response.data.code < 30000) {
+                    setTimeout(() => {
+                        this.doLogin();
+                    }, 1000);
+                }
             })
         })
     }
@@ -29,6 +37,19 @@ class MUtil {
         } else {
             // do nothing
         }
+    }
+
+    getStorage(key) {
+        let data = window.localStorage.getItem(key);
+        if (data) {
+            return JSON.parse(data);
+        }
+
+        return '';
+    }
+
+    removeStorage(key) {
+        window.localStorage.removeItem(key);
     }
 
     successTips(msg) {
@@ -45,6 +66,12 @@ class MUtil {
             result = queryString.match(reg);
         return result ? result[2] : null;
     }
+
+    doLogin() {
+        window.location.href = '/auth/login/redirect=' + encodeURIComponent(window.location.pathname);
+    }
+
+
 }
 
 export default MUtil;
