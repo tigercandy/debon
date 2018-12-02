@@ -30,7 +30,7 @@ class Sidebar extends React.Component {
                         </Menu.Item>
                         <SubMenu key='sub1' title={<span><Icon type="form"/><span>文章管理</span></span>}>
                             <Menu.Item key='3'>
-                                <Link to='/article'>
+                                <Link to='/article/index'>
                                     <Icon type="bars"/><span>文章列表</span>
                                 </Link>
                             </Menu.Item>

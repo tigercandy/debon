@@ -1,12 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Breadcrumb, Form, Icon, Input, Button, Skeleton, Spin, Table, Tag, Divider, Pagination} from 'antd';
+import {Breadcrumb, Spin, Table, Tag, Divider} from 'antd';
 
-import {LocaleProvider} from 'antd';
-
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-
-import Search from 'page/article/search.jsx';
+import Search from 'page/article/index/search.jsx';
 
 
 import './index.scss';

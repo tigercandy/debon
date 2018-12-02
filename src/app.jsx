@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import Layout from 'component/layout/index.jsx';
 import Dashboard from 'page/dashboard/index.jsx';
 import Login from 'page/auth/login.jsx';
-import Article from 'page/article/index.jsx';
 import ErrorPage from 'page/error/index.jsx';
+
+import ArticleRouter from 'page/article/router.jsx';
 
 class App extends React.Component {
     render() {
@@ -14,9 +15,9 @@ class App extends React.Component {
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Dashboard}/>
-                    <Route path="/article" component={Article}/>
+                    <Route path="/article" component={ArticleRouter}/>
 
-                    <Route component={ErrorPage}></Route>
+                    <Route component={ErrorPage}/>
                 </Switch>
             </Layout>
         );
