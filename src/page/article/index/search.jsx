@@ -16,11 +16,6 @@ class Search extends React.Component {
                 <div className="debon-component-pages-list-table-list-tableListForm">
                     <Form layout="inline">
                         <div className="ant-row debon-component-search-row">
-                            {/*<div className="ant-col-sm-24 ant-col-md-8 debon-component-search-input">
-                        <FormItem label="文章ID">
-                            <Input placeholder="请输入文章ID"/>
-                        </FormItem>
-                    </div>*/}
                             <div className="ant-col-sm-24 ant-col-md-8 debon-component-search-input">
                                 <FormItem label="文章标题">
                                     <Input placeholder="请输入文章标题"/>
@@ -50,9 +45,11 @@ class Search extends React.Component {
                     </Form>
                 </div>
                 <div className="debon-component-pages-list-table-list-tableListOperator">
-                    <Button htmlType="button" type="primary">
-                        <Icon type="plus" /> 新建文章
-                    </Button>
+                    <Link to="/article/save">
+                        <Button htmlType="button" type="primary">
+                            <Icon type="plus"/> 新建文章
+                        </Button>
+                    </Link>
                 </div>
             </div>
         );
