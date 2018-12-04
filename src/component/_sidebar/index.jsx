@@ -34,8 +34,8 @@ class Sidebar extends React.Component {
                                     <Icon type="bars"/><span>文章列表</span>
                                 </Link>
                             </Menu.Item>
-                            <Menu.Item key='4'><Icon type="book"/> 分类管理</Menu.Item>
-                            <Menu.Item key='5'><Icon type="tags"/> 标签管理</Menu.Item>
+                            <Menu.Item key='4'><Icon type="book"/>分类管理</Menu.Item>
+                            <Menu.Item key='5'><Icon type="tags"/>标签管理</Menu.Item>
                         </SubMenu>
                         <SubMenu key='sub2' title={<span><Icon type="user" /><span>用户管理</span></span>}>
                             <Menu.Item key='6'>
