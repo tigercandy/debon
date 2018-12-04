@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {Form, Input, Select, Button, Checkbox, Breadcrumb, Icon, Upload, Switch} from 'antd';
+import {Form, Input, Select, Button, Checkbox, Breadcrumb, Icon, Switch} from 'antd';
 
 import Editor from 'util/editor/index.jsx';
+import FileUpload from 'util/upload/index.jsx';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -157,10 +158,7 @@ class Save extends React.Component {
                                             <TextArea rows="4"/>
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="封面">
-                                            <Upload name="bg_img" listType="picture-card" className="avatar-uploader"
-                                                    showUploadList={false} action="">
-                                                {imageUrl ? <img src={imageUrl} alt="bg_img"/> : uploadButton}
-                                            </Upload>
+                                            <FileUpload/>
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="内容">
                                             <Editor/>
