@@ -1,7 +1,11 @@
 import React from 'react';
 import {Upload, Icon, Modal} from 'antd';
 
-class FileUpload extends React.Component {
+import MUtil from 'util/mm.jsx';
+
+const _mm = new MUtil();
+
+class FileUploader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,8 +29,10 @@ class FileUpload extends React.Component {
     }
 
     handleChange({fileList}) {
-        this.setState({
-            fileList
+        const formData = new FormData();
+        this.setState({fileList});
+        fileList.map((file) => {
+            formData.append('files[]', file);
         })
     }
 
@@ -39,18 +45,23 @@ class FileUpload extends React.Component {
             </div>
         );
 
+        const options = {
+            action: '/api/upload',
+            name: 'image',
+        };
+
         return (
             <div className="clearfix">
-                <Upload action="//jsonplaceholder.typicode.com/posts/" listType="picture-card" fileList={fileList} onPreview={this.handlePreview}
-                        onChange={(e) => this.handleChange(e)}>
+                <Upload {...options} listType="picture-card" fileList={fileList}
+                        onPreview={(e) => this.handlePreview(e)} onChange={(fileList) => this.handleChange(fileList)}>
                     {fileList.length >= 1 ? null : uploadButton}
                 </Upload>
-                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                    <img alt="bg_img" style={{width: '100%'}} src={previewImage}/>
+                <Modal visible={previewVisible} footer={null} onCancel={() => this.handleCancel()}>
+                    <img alt="bg_img" style={{width: '100%', height: '100%'}} src={previewImage}/>
                 </Modal>
             </div>
         );
     }
 }
 
-export default FileUpload;
+export default FileUploader;

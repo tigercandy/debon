@@ -37,15 +37,22 @@ class Sidebar extends React.Component {
                             <Menu.Item key='4'><Icon type="book"/>分类管理</Menu.Item>
                             <Menu.Item key='5'><Icon type="tags"/>标签管理</Menu.Item>
                         </SubMenu>
-                        <SubMenu key='sub2' title={<span><Icon type="user" /><span>用户管理</span></span>}>
+                        <SubMenu key='sub2' title={<span><Icon type='folder'/><span>文件管理</span></span>}>
                             <Menu.Item key='6'>
+                                <Link to='/'>
+                                    <Icon type="picture" /><span>图片管理</span>
+                                </Link>
+                            </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key='sub3' title={<span><Icon type="user" /><span>用户管理</span></span>}>
+                            <Menu.Item key='7'>
                                 <Link to='/user'>
                                     <Icon type="team" /><span>用户列表</span>
                                 </Link>
                             </Menu.Item>
                         </SubMenu>
-                        <SubMenu key='sub3' title={<span><Icon type="setting" /><span>设置</span></span>}>
-                            <Menu.Item key='7'>
+                        <SubMenu key='sub4' title={<span><Icon type="setting" /><span>设置</span></span>}>
+                            <Menu.Item key='8'>
                                 <Link to='/system'>
                                     <Icon type="info-circle" /><span>系统信息</span>
                                 </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Table, Skeleton} from 'antd';
+import {Table, Skeleton, Icon} from 'antd';
 
 import MUtil from 'util/mm.jsx';
 import Statistics from 'service/statistics.jsx';
