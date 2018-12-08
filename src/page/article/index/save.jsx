@@ -2,13 +2,18 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {Form, Input, Select, Button, Checkbox, Breadcrumb, Icon, Switch} from 'antd';
 
+import MUtil from 'util/mm.jsx';
+import Article from 'service/article.jsx';
 import Editor from 'util/editor/index.jsx';
-import FileUpload from 'util/upload/index.jsx';
+import FileUploader from 'util/upload/index.jsx';
 
+const {TextArea} = Input;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const CheckboxGroup = Checkbox.Group;
-const {TextArea} = Input;
+
+const _article = new Article();
+const _mm = new MUtil();
 
 import './index.scss';
 
@@ -28,24 +33,6 @@ function itemRender(route, params, routes, paths) {
     return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>;
 }
 
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-    const isJPG = file.type === 'image/jpeg';
-    if (!isJPG) {
-        message.error('You can only upload JPG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-    }
-    return isJPG && isLt2M;
-}
-
 const plainOptions = ['PHP', 'Golang', 'Java', 'C++', 'Python'];
 const defaultCheckedList = [];
 
@@ -53,20 +40,17 @@ class Save extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.aid,
             checkedList: defaultCheckedList,
             indeterminate: true,
             checkAll: false,
             publish: 1,
             loading: false,
+            title: "",
+            category_id: 0,
+            tag_id: 0,
+            desc: ""
         }
-    }
-
-    onChange(checkedList) {
-        this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length
-        })
     }
 
     onCheckAllChange(e) {
@@ -77,10 +61,20 @@ class Save extends React.Component {
         })
     }
 
-    onPublishChange(e) {
-        this.setState({
-            publish: e.target.value
-        })
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.form.validateFields((err, articleInfo) => {
+            if (!err) {
+                _article.saveArticle(articleInfo).then((res) => {
+                    _mm.successTips(res.msg);
+                    this.props.history.push('/article/index');
+                }, (errMsg) => {
+                    _mm.errorTips(errMsg);
+                });
+            } else {
+                _mm.errorTips(err);
+            }
+        });
     }
 
     render() {
@@ -108,15 +102,7 @@ class Save extends React.Component {
             },
         };
 
-        const uploadButton = (
-            <div>
-                <Icon type={this.state.loading ? 'loading' : 'cloud-upload'}/>
-                <div className="ant-upload-text">上传图片</div>
-            </div>
-        );
-
-        const imageUrl = this.state.imageUrl;
-
+        const {getFieldDecorator} = this.props.form;
         return (
             <div className="debon-article-list-container">
                 <div className="debon-component-page-header">
@@ -135,12 +121,20 @@ class Save extends React.Component {
                         <div className="ant-card">
                             <div className="ant-card-body">
                                 <div className="debon-component-pages-list-table-list-tableList">
-                                    <Form layout="horizontal">
+                                    <Form layout="horizontal" onSubmit={(e) => (this.handleSubmit(e))}>
                                         <FormItem {...formItemLayout} label="标题">
-                                            <Input placeholder="文章标题"/>
+                                            {getFieldDecorator('title', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写标题!',
+                                                }],
+                                            })(
+                                                <Input name="title" placeholder="文章标题"/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="分类">
-                                            <Select showSearch placeholder="请选择分类" optionFilterProp="children"
+                                            <Select name="category_id" showSearch placeholder="请选择分类"
+                                                    optionFilterProp="children"
                                                     filterOption={(input, open) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
                                                 <Option value="1">后端</Option>
                                                 <Option value="2">前端</Option>
@@ -151,24 +145,44 @@ class Save extends React.Component {
                                                       onChange={(e) => this.onCheckAllChange(e)}
                                                       checked={this.state.checkAll}>全选</Checkbox>
                                             <CheckboxGroup options={plainOptions}
-                                                           value={this.state.checkedList}
-                                                           onChange={(e) => this.onChange(e)}/>
+                                                           value={this.state.checkedList}/>
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="简介">
-                                            <TextArea rows="4"/>
+                                            {getFieldDecorator('desc', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: "请填写简介!"
+                                                }],
+                                            })(
+                                                <TextArea rows="4"/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="封面">
-                                            <FileUpload/>
+                                            {getFieldDecorator('bg_img', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请上传封面图!'
+                                                }],
+                                            })(
+                                                <FileUploader/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="内容">
-                                            <Editor/>
+                                            {getFieldDecorator('content', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写内容!'
+                                                }],
+                                            })(
+                                                <Editor/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="发布">
                                             <Switch checkedChildren={<Icon type="check"/>}
                                                     unCheckedChildren={<Icon type="close"/>} defaultChecked/>
                                         </FormItem>
                                         <FormItem {...tailFormItemLayout}>
-                                            <Button type="primary" htmlType="button"><Icon type="save"/>保存</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="save"/>保存</Button>
                                         </FormItem>
                                     </Form>
                                 </div>
@@ -180,5 +194,7 @@ class Save extends React.Component {
         );
     }
 }
+
+Save = Form.create({})(Save);
 
 export default Save;
