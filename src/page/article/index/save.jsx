@@ -2,15 +2,15 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {Form, Input, Select, Button, Checkbox, Breadcrumb, Icon, Switch} from 'antd';
 
+import MUtil from 'util/mm.jsx';
+import Article from 'service/article.jsx';
 import Editor from 'util/editor/index.jsx';
 import FileUploader from 'util/upload/index.jsx';
-import Article from 'service/article.jsx';
-import MUtil from 'util/mm.jsx';
 
+const {TextArea} = Input;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const CheckboxGroup = Checkbox.Group;
-const {TextArea} = Input;
 
 const _article = new Article();
 const _mm = new MUtil();
@@ -46,20 +46,11 @@ class Save extends React.Component {
             checkAll: false,
             publish: 1,
             loading: false,
-            // article
             title: "",
             category_id: 0,
             tag_id: 0,
             desc: ""
         }
-    }
-
-    onTagChange(checkedList) {
-        this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length
-        })
     }
 
     onCheckAllChange(e) {
@@ -70,44 +61,20 @@ class Save extends React.Component {
         })
     }
 
-    onPublishChange(e) {
-        this.setState({
-            publish: e.target.value
-        })
-    }
-
-    onValueChange(e) {
-        let name = e.target.name,
-            value = e.target.value.trim();
-        this.setState({
-            [name]: value
-        })
-    }
-
-    onSave(e) {
-        let article = {
-            title: this.state.title,
-            category_id: this.state.category_id,
-            tag_id: this.state.tag_id,
-            desc: this.state.desc
-        };
-        if (this.state.id) {
-            article.id = this.state.id
-        }
-
-        _article.saveArticle(article).then((res) => {
-            _mm.successTips(res);
-            this.props.history.push('/article/index');
-        }, (errMsg) => {
-            _mm.errorTips(errMsg);
-        })
-    }
-
-    // editor
-    onEditorValueChange(value) {
-        this.setState({
-            detail: value
-        })
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.form.validateFields((err, articleInfo) => {
+            if (!err) {
+                _article.saveArticle(articleInfo).then((res) => {
+                    _mm.successTips(res.msg);
+                    this.props.history.push('/article/index');
+                }, (errMsg) => {
+                    _mm.errorTips(errMsg);
+                });
+            } else {
+                _mm.errorTips(err);
+            }
+        });
     }
 
     render() {
@@ -135,6 +102,7 @@ class Save extends React.Component {
             },
         };
 
+        const {getFieldDecorator} = this.props.form;
         return (
             <div className="debon-article-list-container">
                 <div className="debon-component-page-header">
@@ -153,15 +121,21 @@ class Save extends React.Component {
                         <div className="ant-card">
                             <div className="ant-card-body">
                                 <div className="debon-component-pages-list-table-list-tableList">
-                                    <Form layout="horizontal">
+                                    <Form layout="horizontal" onSubmit={(e) => (this.handleSubmit(e))}>
                                         <FormItem {...formItemLayout} label="标题">
-                                            <Input placeholder="文章标题" name="title"
-                                                   onChange={(e) => this.onValueChange(e)}/>
+                                            {getFieldDecorator('title', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写标题!',
+                                                }],
+                                            })(
+                                                <Input name="title" placeholder="文章标题"/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="分类">
-                                            <Select name="category_id" showSearch placeholder="请选择分类" optionFilterProp="children"
-                                                    filterOption={(input, open) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                                                    onChange={(e) => this.onValueChange(e)}>
+                                            <Select name="category_id" showSearch placeholder="请选择分类"
+                                                    optionFilterProp="children"
+                                                    filterOption={(input, open) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
                                                 <Option value="1">后端</Option>
                                                 <Option value="2">前端</Option>
                                             </Select>
@@ -171,26 +145,44 @@ class Save extends React.Component {
                                                       onChange={(e) => this.onCheckAllChange(e)}
                                                       checked={this.state.checkAll}>全选</Checkbox>
                                             <CheckboxGroup options={plainOptions}
-                                                           value={this.state.checkedList}
-                                                           onChange={(e) => this.onTagChange(e)}/>
+                                                           value={this.state.checkedList}/>
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="简介">
-                                            <TextArea rows="4" name="desc" onChange={(e) => this.onValueChange(e)}/>
+                                            {getFieldDecorator('desc', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: "请填写简介!"
+                                                }],
+                                            })(
+                                                <TextArea rows="4"/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="封面">
-                                            <FileUploader onChange={(e) => this.onValueChange(e)}/>
+                                            {getFieldDecorator('bg_img', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请上传封面图!'
+                                                }],
+                                            })(
+                                                <FileUploader/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="内容">
-                                            <Editor onValueChange={(value) => this.onEditorValueChange(value)}/>
+                                            {getFieldDecorator('content', {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写内容!'
+                                                }],
+                                            })(
+                                                <Editor/>
+                                            )}
                                         </FormItem>
                                         <FormItem {...formItemLayout} label="发布">
                                             <Switch checkedChildren={<Icon type="check"/>}
                                                     unCheckedChildren={<Icon type="close"/>} defaultChecked/>
                                         </FormItem>
                                         <FormItem {...tailFormItemLayout}>
-                                            <Button type="primary" htmlType="button" onClick={(e) => {
-                                                this.onSave(e)
-                                            }}><Icon type="save"/>保存</Button>
+                                            <Button type="primary" htmlType="submit"><Icon type="save"/>保存</Button>
                                         </FormItem>
                                     </Form>
                                 </div>
@@ -202,5 +194,7 @@ class Save extends React.Component {
         );
     }
 }
+
+Save = Form.create({})(Save);
 
 export default Save;
