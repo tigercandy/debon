@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Table, Skeleton, Icon} from 'antd';
+import {Table, Skeleton} from 'antd';
 
 import MUtil from 'util/mm.jsx';
 import Statistics from 'service/statistics.jsx';
@@ -99,9 +99,9 @@ class Dashboard extends React.Component {
                                         <div className="debon-dashboard-card-body-title"></div>
                                         <div className="debon-dashboard-card-body-metaWrap">
                                             <div className="debon-dashboard-card-body-meta-title">
-                                            <span>
-                                                <span>用户数</span>
-                                            </span>
+                                                <span>
+                                                    <span>用户数</span>
+                                                </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
                                                 <span>{this.state.userCount}</span>
@@ -126,9 +126,9 @@ class Dashboard extends React.Component {
                                         <div className="debon-dashboard-card-body-title"></div>
                                         <div className="debon-dashboard-card-body-metaWrap">
                                             <div className="debon-dashboard-card-body-meta-title">
-                                            <span>
-                                                <span>文章数</span>
-                                            </span>
+                                                <span>
+                                                    <span>文章数</span>
+                                                </span>
                                             </div>
                                             <div className="debon-dashboard-card-body-meta-total">
                                                 <span>{this.state.articleCount}</span>
