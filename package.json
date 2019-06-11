@@ -21,9 +21,7 @@
     "node-sass": "4.7.2",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.1",
-    "url-loader": "0.6.2",
-    "webpack": "3.10.0",
-    "webpack-dev-server": "3.1.11"
+    "url-loader": "0.6.2"
   },
   "dependencies": {
     "antd": "^3.10.8",
@@ -33,6 +31,8 @@
     "react": "16.2.0",
     "react-dom": "16.2.1",
     "react-router-dom": "4.2.2",
-    "simditor": "2.3.22"
+    "simditor": "2.3.22",
+    "webpack": "3.8.0",
+    "webpack-dev-server": "2.9.7"
   }
 }
