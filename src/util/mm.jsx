@@ -12,18 +12,15 @@ class MUtil {
                 if (200 === response.data.code) {
                     typeof resolve === 'function' && resolve(response.data.data, response.data.msg);
                 } else if (20000 <= response.data.code < 30000) {
+                    typeof resolve === 'function' && reject(response.data.msg || response.data.data);
                     this.doLogin();
                 } else {
                     typeof resolve === 'function' && reject(response.data.msg || response.data.data);
                 }
             }).catch((error) => {
-                const response = error.response;
-                typeof reject === 'function' && reject(response.data.msg);
-                if (20000 <= response.data.code < 30000) {
-                    setTimeout(() => {
-                        this.doLogin();
-                    }, 1000);
-                }
+                setTimeout(() => {
+                    this.doLogin();
+                }, 1000);
             })
         })
     }
